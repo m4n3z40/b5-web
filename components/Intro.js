@@ -1,5 +1,11 @@
-export default ({ selectedLanguage, info, setLanguage, startTest }) => {
-  const { languages } = info
+import { useState } from 'react'
+import { useRouter } from 'next/router'
+const { getInfo } = require('@alheimsins/b5-johnson-120-ipip-neo-pi-r')
+
+const Intro = () => {
+  const router = useRouter()
+  const [language, setLanguage] = useState('en')
+  const { languages } = getInfo()
   return (
     <div className='intro-wrapper'>
       <p>This is a test for the five factor model of personality based on work from <a href='https://github.com/kholia/IPIP-NEO-PI' target='blank'>IPIP-NEO-PI</a>.</p>
@@ -11,16 +17,25 @@ export default ({ selectedLanguage, info, setLanguage, startTest }) => {
         <li>Your spontaneous answer is usually the most accurate.</li>
       </ul>
       <p><strong>Select test language</strong></p>
+      <select
+        value={language}
+        onChange={event => setLanguage(event.target.value)}
+      >
+        <option value='' key='first-option'>Choose language</option>
+        {languages.map(lang => (
+          <option value={lang.id} key={lang.id}>{lang.text}</option>
+        ))}
+      </select>
       <div>
-        {languages.map((lang, index) => <button className={selectedLanguage === lang.id ? 'isActive' : ''} onClick={() => setLanguage(lang.id)} key={index}>{lang.text}</button>)}
-      </div>
-      <div>
-        <button onClick={startTest}>Start test</button>
+        <button onClick={() => router.push(`/test?language=${language}`)}>Start test</button>
       </div>
       <style jsx>
         {`
           ul {
             list-style-type: none;
+          }
+          select {
+            padding: 5px;
           }
           button {
             background-color: white;
@@ -71,3 +86,5 @@ export default ({ selectedLanguage, info, setLanguage, startTest }) => {
     </div>
   )
 }
+
+export default Intro

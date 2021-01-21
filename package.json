@@ -1,10 +1,10 @@
 {
   "name": "b5-web",
-  "version": "2.0.9",
+  "version": "2.2.6",
   "description": "Static site for big five personality tests",
   "main": "index.js",
   "scripts": {
-    "test": "standard && npm audit && ava",
+    "test": "standard && ava",
     "test-offline": "standard && ava",
     "coverage": "nyc ava",
     "coveralls": "nyc ava && nyc report --reporter=lcov && cat coverage/lcov.info | coveralls",
@@ -15,17 +15,7 @@
     "clear": "rm -rf .next && rm -rf dist",
     "export": "next build && next export -o dist",
     "refresh": "rm -rf node_modules && rm package-lock.json && npm install",
-    "deploy": "now --prod"
-  },
-  "standard": {
-    "parser": "babel-eslint",
-    "parserOptions": {
-      "ecmaFeatures": {
-        "experimentalObjectRestSpread": true,
-        "jsx": true
-      },
-      "sourceType": "module"
-    }
+    "deploy": "vc --prod"
   },
   "repository": {
     "type": "git",
@@ -43,25 +33,24 @@
   },
   "homepage": "https://github.com/zrrrzzt/b5-web#readme",
   "engines": {
-    "node": ">= 12.16.3"
+    "node": ">= 12.19.0"
   },
   "dependencies": {
-    "@alheimsins/b5-johnson-120-ipip-neo-pi-r": "5.0.0",
-    "@alheimsins/b5-result-text": "3.0.2",
-    "@alheimsins/bigfive-calculate-score": "2.0.1",
-    "file-saver": "2.0.2",
-    "jcb64": "3.0.1",
-    "next": "9.4.2",
-    "next-offline": "5.0.2",
-    "react": "16.13.1",
-    "react-dom": "16.13.1",
+    "@alheimsins/b5-johnson-120-ipip-neo-pi-r": "5.2.5",
+    "@alheimsins/b5-result-text": "4.1.2",
+    "@alheimsins/bigfive-calculate-score": "2.0.5",
+    "file-saver": "2.0.5",
+    "jcb64": "3.0.3",
+    "next": "10.0.5",
+    "next-offline": "5.0.3",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
     "react-easy-chart": "1.0.0"
   },
   "devDependencies": {
-    "ava": "3.8.2",
-    "babel-eslint": "10.1.0",
+    "ava": "3.15.0",
     "coveralls": "3.1.0",
-    "nyc": "15.0.1",
-    "standard": "14.3.4"
+    "nyc": "15.1.0",
+    "standard": "16.0.3"
   }
 }
